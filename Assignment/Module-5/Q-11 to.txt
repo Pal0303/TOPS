@@ -1,0 +1,41 @@
+Q-11. Create table given below: Salesperson and Customer
+
+create table salesperson(
+  sno int primary key,
+  sname varchar(255),
+  city varchar(255),
+  comm int
+);
+
+insert into salesperson (sno, sname, city, comm) values
+ (1001, 'Peel', 'London', .12),
+ (1002, 'Serres', 'San Jose', .13),
+ (1004, 'Motika', 'London', .11),
+ (1007, 'Rafkin' , 'Barcelona', .15),
+ (1003, 'Axelrod', 'New York', .1)
+;
+
+
+create table customer(
+  cno int primary key,
+  cname varchar(255),
+  city varchar(255),
+  rating int,
+  sno int, 
+  foreign key (sno) REFERENCES salesperson (sno)
+);
+
+insert into customer (cno, cname, city, rating, sno) values
+ (201, 'Hoffman', 'London', 100, 1001),
+ (202, 'Giovanne', 'Roe', 200, 1003),
+ (203, 'Liu', 'Sn Jose', 300, 1002),
+ (204, 'Grass' , 'Barcelona', 100, 1002),
+ (206, 'Clemens', 'London', 300, 1007),
+ (207, 'Pereira', 'Roe', 100, 1004)
+;
+
+
+
+
+Q-12. Retrieve the below data from above table
+Q-13. All orders for more than $1000.

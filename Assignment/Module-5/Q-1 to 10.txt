@@ -1,0 +1,124 @@
+Q-1. Create Table Name : Student and Exam
+
+create table student( 
+rollno int auto_increment PRIMARY key,
+name varchar(255),
+branch varchar(255)
+);
+
+insert into student (name, branch) values 
+('Jay', 'Computer Science'),
+('Suhani', 'Electronic and Com'),
+('Kriti', 'Electronic and Com');
+
+
+create table exam (
+rollno int,
+c_code varchar(255),
+marks int,
+p_code varchar(255),
+FOREIGN KEY (rollno) REFERENCES student(rollno)
+);
+
+insert into exam (c_code, marks, p_code) values
+('CS11',50,'CS'),
+('CS12',60,'CS'),
+('EC101',66,'EC'),
+('EC102',70,'EC'),
+('EC101',45,'EC'),
+('EC102',50,'EC');
+
+
+
+
+Q-2. Create table given below: Employee and IncentiveTable
+
+create table employee (
+employee_id int primary key,
+first_name varchar(255),
+last_name varchar(255),
+salary int,
+joining_date timestamp default current_timestamp,
+department varchar(255)
+);
+
+insert into employee (employee_id, first_name, last_name, salary, department) values 
+(1,'John','Abraham',1000000,'Banking'),
+(2,'Michal','Clarke',800000,'Insurance'),
+(3,'Roy','Thomas',700000,'Banking'),
+(4,'Tom','Jose',600000,'Insurance'),
+(5,'Jerry','Pinto',650000,'Insurance'),
+(6,'Philip','Mathew',750000,'Services'),
+(7,'TestName1','123',650000,'Services'),
+(8,'TestName2','Lname%',600000,'Insurance');
+
+
+create table Incentive(
+employee_ref_id int,
+incentive_date date default current_date,
+incentive_amount int,
+FOREIGN KEY (employee_ref_id) REFERENCES employee (employee_id)
+);
+
+insert into Incentive (employee_ref_id, incentive_amount) values
+(1, 5000),
+(2, 3000),
+(3, 4000),
+(1, 4500),
+(2, 3500);
+
+
+
+
+Q-3. Get First_Name from employee table using Tom name “Employee Name”.
+
+
+
+
+Q-4. Get FIRST_NAME, Joining Date, and Salary from employee table.
+
+select first_name, joining_date, salary from employee
+
+
+
+Q-5. Get all employee details from the employee table order by First_Name Ascending and Salary descending?
+
+select * from employee order by first_name and salary desc;
+
+
+
+
+Q-6. Get employee details from employee table whose first name contains ‘J’.
+
+select * from employee where first_name like '%j%';
+
+
+
+
+Q-7-8. Get department wise maximum salary from employee table order by salary ascending?
+
+select department, max(salary) from employee group by department order by salary;
+
+
+
+
+Q-9. Select first_name, incentive amount from employee and incentives table for those employees who have incentives and incentive amount greater than 3000.
+
+select employee.first_name, Incentive.incentive_amount from employee join Incentive on employee.employee_id = Incentive.employee_ref_id where Incentive.incentive_amount> 3000;
+
+
+
+
+Q-10. Create After Insert trigger on Employee table which insert records in viewtable.
+
+create trigger after_employee_insert
+after insert on employee
+for each row
+begin
+insert into viewtable (employee_id, first_name, last_name, salary, joining_date, department)
+values (NEW.employee_id, NEW.first_name, NEW.last_name, NEW.salary, NEW.joining_date, NEW.department);
+end;
+
+
+
+
