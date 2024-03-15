@@ -72,6 +72,8 @@ insert into Incentive (employee_ref_id, incentive_amount) values
 
 Q-3. Get First_Name from employee table using Tom name “Employee Name”.
 
+select first_name from employee where first_name = 'Tom';
+
 
 
 
