@@ -1,0 +1,46 @@
+CREATE TABLE Product(
+  PRO_ID int PRIMARY KEY,
+  PRO_NAME varchar(255),
+  PRO_PRICE int,
+  PRO_COM int
+  );
+
+INSERT INTO Product(
+  PRO_ID,PRO_NAME,PRO_PRICE,PRO_COM)
+  VALUES
+  (101,'Mother Board',3200,15),
+  (102,'Key Board',450,16),
+  (103,'ZIP drive',250,14),
+  (104,'Speaker',550,16),
+  (105,'Monitor',5000,11),
+  (106,'DVD drive',900,12),
+  (107,'CD drive',800,12),
+  (108,'Printer',2600,13),
+  (109,'Refill cartridge',350,13),
+  (110,'Mouse',250,12);
+
+
+
+Write sql query to find the items whose prices are higher than or equal 250rs. Order the result by product price in descending, then product name in ascending. Return pro_name and pro_price
+
+SELECT * FROM Product WHERE PRO_PRICE>=250 ORDER BY PRO_PRICE DESC, PRO_NAME; 
+
+
+
+Write a sql query to find the cheapest item. Return pro_name and pro_price.
+
+SELECT PRO_NAME,MIN(PRO_PRICE) FROM Product;
+
+
+
+Write the sql query to calculate the average price of the items for each company. Return average price and company code.
+
+SELECT PRO_COM, AVG(PRO_PRICE) FROM Product GROUP BY PRO_COM;
+
+
+
+Write the sql query to find the average total for all the product mention in the table.
+
+SELECT AVG(PRO_PRICE) FROM Product;  
+
+ 
